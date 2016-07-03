@@ -4,13 +4,13 @@ var React = require('react');
 
 var NationalityForm = React.createClass({
 
-  handleChange: function(e){
-    e.preventDefault();
-    var newIndex = e.target.value;
-    this.setState({selectedIndex: newIndex});
-    var selectedCountry = this.props.nations[newIndex];
-    this.props.onSelectCountry( selectedCountry );
-  },
+  // handleChange: function(e){
+  //   e.preventDefault();
+  //   var newIndex = e.target.value;
+  //   this.setState({selectedIndex: newIndex});
+  //   var selectedCountry = this.props.nations[newIndex];
+  //   this.props.onSelectCountry( selectedCountry );
+  // },
 
 
   render: function() {

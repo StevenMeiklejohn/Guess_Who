@@ -2,6 +2,7 @@ var React = require('react');
 
 
 
+
 var CharactersBox = React.createClass({
 
   switchImage: function(){
@@ -12,9 +13,6 @@ var CharactersBox = React.createClass({
     console.log("clicked");
     e.target.src ="http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png"
   },
-
-
-
 
 
   render: function() {

@@ -20041,7 +20041,66 @@
 	  displayName: "QuestionsForm",
 	
 	
+	  handleQuestion: function handleQuestion(e) {
+	    e.preventDefault();
+	    console.log(e.target.value);
+	    var forDeslection = [];
+	    var selection = e.target.value;
+	
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
+	
+	    try {
+	      for (var _iterator = this.props.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        var item = _step.value;
+	
+	        if (selection === "0") {
+	          if (item.Moustache === "No") {
+	            forDeslection.push(item.Name);
+	          }
+	        }
+	        if (selection === "1") {
+	          if (item.Mask === "No") {
+	            forDeslection.push(item.Name);
+	          }
+	        }
+	        if (selection === "2") {
+	          if (item.Hair === "No") {
+	            forDeslection.push(item.Name);
+	          }
+	        }
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
+	        }
+	      } finally {
+	        if (_didIteratorError) {
+	          throw _iteratorError;
+	        }
+	      }
+	    }
+	
+	    console.log(forDeslection);
+	    return forDeslection;
+	  },
+	
 	  render: function render() {
+	    var array = ["Moustache", "Mask", "Hair"];
+	    var options = array.map(function (characteristic, index) {
+	      return React.createElement(
+	        "option",
+	        { value: index, key: index },
+	        " ",
+	        characteristic,
+	        " "
+	      );
+	    });
 	    return React.createElement(
 	      "div",
 	      { className: "QuestionsForm" },
@@ -20050,22 +20109,9 @@
 	        { id: "VillainForm1" },
 	        React.createElement(
 	          "select",
-	          { id: "DoesVillainHave" },
-	          React.createElement(
-	            "option",
-	            null,
-	            "Moustache"
-	          ),
-	          React.createElement(
-	            "option",
-	            null,
-	            "Mask"
-	          ),
-	          React.createElement(
-	            "option",
-	            null,
-	            "Hair"
-	          )
+	          { id: "DoesVillainHave",
+	            onChange: this.handleQuestion },
+	          options
 	        )
 	      )
 	    );
@@ -20086,13 +20132,13 @@
 	  displayName: "NationalityForm",
 	
 	
-	  handleChange: function handleChange(e) {
-	    e.preventDefault();
-	    var newIndex = e.target.value;
-	    this.setState({ selectedIndex: newIndex });
-	    var selectedCountry = this.props.nations[newIndex];
-	    this.props.onSelectCountry(selectedCountry);
-	  },
+	  // handleChange: function(e){
+	  //   e.preventDefault();
+	  //   var newIndex = e.target.value;
+	  //   this.setState({selectedIndex: newIndex});
+	  //   var selectedCountry = this.props.nations[newIndex];
+	  //   this.props.onSelectCountry( selectedCountry );
+	  // },
 	
 	  render: function render() {
 	    var nation = this.props.nations.map(function (country, index) {
@@ -20133,21 +20179,25 @@
 	  Politician: "Yes",
 	  Moustache: "No",
 	  Mask: "Yes",
+	  Hair: "No",
 	  Nationality: "Tatooinian"
 	}, { Name: "Ming The Merciless",
 	  Politician: "Yes",
 	  Moustache: "Yes",
 	  Mask: "No",
+	  Hair: "Yes",
 	  Nationality: "Mongolian"
 	}, { Name: "Skeletor",
 	  Politician: "No",
 	  Moustache: "No",
 	  Mask: "No",
+	  Hair: "No",
 	  Nationality: "Eternian"
 	}, { Name: "Hitler",
 	  Politician: "Yes",
 	  Moustache: "Yes",
 	  Mask: "No",
+	  Hair: "Yes",
 	  Nationality: "German"
 	}, { Name: "Stalin",
 	  Politician: "Yes",
