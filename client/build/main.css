@@ -20,6 +20,16 @@ body {
   text-align: center;
 }
 
+#ResultImage{
+  display: float;
+  text-align: center;
+}
+
+#Result{
+  display: float;
+  text-align: center;
+}
+
 #title{
   text-align: center;
   font-family: "Evil";
@@ -70,12 +80,6 @@ body {
   text-align: center;
   font-family: "Evil";
   font-size: 15px;
-}
-
-#Result{
-  text-align: center;
-  font-family: "Evil";
-  font-size: 30px;
 }
 
 #GuessForm{
@@ -137,4 +141,9 @@ body {
 #MummRa{
   display: inline-block;
   margin: 10px;
+}
+
+#Result{
+  display:block;
+  text-align: center;
 }

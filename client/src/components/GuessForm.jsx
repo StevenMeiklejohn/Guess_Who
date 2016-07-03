@@ -14,7 +14,8 @@ render: function() {
   return (
      <div className="GuessForm"> 
       <div id="Guess">
-        <select id="GuessVillain">
+        <select id="GuessVillain"
+        onChange={this.props.handleVillain}>
         {bastard}
         </select>
       </div>

@@ -19712,18 +19712,18 @@
 	  },
 	  removeImage: function removeImage(image) {},
 	  componentDidMount: function componentDidMount() {
-	    this.setRandomCharacter();
+	    this.selectRandomCharacter();
 	  },
 	  selectRandomCharacter: function selectRandomCharacter() {
 	    var villains = this.getVillains();
 	    console.log(villains);
 	    var rand = villains[Math.floor(Math.random() * villains.length)];
 	    console.log(rand);
-	    return rand;
+	    this.setRandomCharacter(rand);
 	  },
-	  setRandomCharacter: function setRandomCharacter() {
-	    var gVillain = this.selectRandomCharacter();
-	    console.log(gVillain);
+	  setRandomCharacter: function setRandomCharacter(name) {
+	    var gVillain = name;
+	    console.log(name);
 	    this.setState({ gameVillain: gVillain });
 	  },
 	  getNationalities: function getNationalities() {
@@ -19882,6 +19882,29 @@
 	    this.changeImageEnMass(names);
 	  },
 	
+	  handleVillain: function handleVillain(e) {
+	    var options = this.state.allBastards;
+	    var cpuPlayer = this.state.gameVillain;
+	    var index = e.target.value;
+	    console.log(options[index]);
+	
+	    if (options[index].Name === cpuPlayer) {
+	      this.handleWin();
+	    } else {
+	      this.handleLose();
+	    }
+	  },
+	
+	  handleWin: function handleWin() {
+	    console.log("You Win");
+	    window.alert("You win! Yaaaaaas!");
+	  },
+	
+	  handleLose: function handleLose() {
+	    console.log("You Lose");
+	    window.alert("Close but no cigar");
+	  },
+	
 	  switchImage: function switchImage() {
 	    console.log("vader Clicked");
 	  },
@@ -19893,7 +19916,9 @@
 	
 	  changeImageEnMass: function changeImageEnMass(array) {
 	    var all = this.state.allBastards;
+	    var cpuPlayer = this.state.gameVillain;
 	    console.log(all);
+	    console.log(cpuPlayer);
 	    // array = ["Skeletor", "Hitler", "Stalin"]
 	    var _iteratorNormalCompletion5 = true;
 	    var _didIteratorError5 = false;
@@ -19911,7 +19936,9 @@
 	            var character = _step6.value;
 	
 	            if (item === character.Name) {
-	              character.src = "http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png";
+	              if (item != cpuPlayer) {
+	                character.src = "http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png";
+	              }
 	            }
 	          }
 	        } catch (err) {
@@ -20007,7 +20034,8 @@
 	        ),
 	        React.createElement(GuessForm, {
 	          data: this.state.allBastards,
-	          villains: this.getVillains()
+	          villains: this.getVillains(),
+	          handleVillain: this.handleVillain
 	        })
 	      )
 	    );
@@ -20046,7 +20074,8 @@
 	        { id: "Guess" },
 	        React.createElement(
 	          "select",
-	          { id: "GuessVillain" },
+	          { id: "GuessVillain",
+	            onChange: this.props.handleVillain },
 	          bastard
 	        )
 	      )

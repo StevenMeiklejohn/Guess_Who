@@ -14,18 +14,18 @@ var GameBox = React.createClass({
 
   },
   componentDidMount: function() {
-  this.setRandomCharacter();
+  this.selectRandomCharacter();
   },
   selectRandomCharacter: function(){
     var villains = this.getVillains();
     console.log(villains);
     var rand = villains[Math.floor(Math.random() * villains.length)];
     console.log(rand);
-    return rand;
+    this.setRandomCharacter(rand);
   },
-  setRandomCharacter: function(){
-    var gVillain = this.selectRandomCharacter();
-    console.log(gVillain);
+  setRandomCharacter: function(name){
+    var gVillain = name;
+    console.log(name);
     this.setState( { gameVillain: gVillain })
   },
   getNationalities: function(){
@@ -98,6 +98,29 @@ var GameBox = React.createClass({
       this.changeImageEnMass(names)
     },
 
+    handleVillain: function(e){
+      var options=this.state.allBastards
+      var cpuPlayer=this.state.gameVillain
+      var index = e.target.value
+      console.log(options[index]);
+
+      if(options[index].Name === cpuPlayer){
+        this.handleWin()
+      } else {
+        this.handleLose()
+      }
+   },
+
+    handleWin: function(){
+      console.log("You Win")
+      window.alert("You win! Yaaaaaas!")
+    },
+
+    handleLose: function(){
+      console.log("You Lose")
+      window.alert("Close but no cigar")
+    },
+
     switchImage: function(){
       console.log("vader Clicked");
     },
@@ -109,12 +132,16 @@ var GameBox = React.createClass({
 
     changeImageEnMass: function(array){
       var all = this.state.allBastards
+      var cpuPlayer = this.state.gameVillain
       console.log(all);
+      console.log(cpuPlayer);
       // array = ["Skeletor", "Hitler", "Stalin"]
       for (var item of array){
         for (var character of all){
           if(item === character.Name){
+            if(item != cpuPlayer){
             character.src="http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png"
+            }
           }
         }
       }
@@ -170,6 +197,7 @@ var GameBox = React.createClass({
         <GuessForm 
         data={this.state.allBastards}
         villains={this.getVillains()}
+        handleVillain={this.handleVillain}
         />
         </div>
 
