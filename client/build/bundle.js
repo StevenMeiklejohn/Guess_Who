@@ -19708,14 +19708,24 @@
 	  displayName: 'GameBox',
 	
 	  getInitialState: function getInitialState() {
-	    return { allBastards: bastards };
+	    return { allBastards: bastards, gameVillain: null };
 	  },
-	
+	  removeImage: function removeImage(image) {},
 	  componentDidMount: function componentDidMount() {
-	    // console.log(this.state.allBastards);
-	    // this.selectRandomCharacter();
+	    this.setRandomCharacter();
 	  },
-	
+	  selectRandomCharacter: function selectRandomCharacter() {
+	    var villains = this.getVillains();
+	    console.log(villains);
+	    var rand = villains[Math.floor(Math.random() * villains.length)];
+	    console.log(rand);
+	    return rand;
+	  },
+	  setRandomCharacter: function setRandomCharacter() {
+	    var gVillain = this.selectRandomCharacter();
+	    console.log(gVillain);
+	    this.setState({ gameVillain: gVillain });
+	  },
 	  getNationalities: function getNationalities() {
 	    var nationalities = [];
 	    var _iteratorNormalCompletion = true;
@@ -19746,7 +19756,10 @@
 	    console.log(nationalities);
 	    return nationalities;
 	  },
-	
+	  setSelectedNationality: function setSelectedNationality(selectedCountry) {
+	    console.log(selectedCountry);
+	    console.log(this.state.gameVillain);
+	  },
 	  getVillains: function getVillains() {
 	    var villains = [];
 	    var _iteratorNormalCompletion2 = true;
@@ -19814,7 +19827,8 @@
 	        ),
 	        React.createElement(NationalityForm, {
 	          data: this.state.allBastards,
-	          nations: this.getNationalities()
+	          nations: this.getNationalities(),
+	          onSelectCountry: this.setSelectedNationality
 	        })
 	      ),
 	      React.createElement(
@@ -19832,22 +19846,9 @@
 	      )
 	    );
 	  }
-	
 	});
 	
 	module.exports = GameBox;
-	
-	// <div className="CharactersBox">
-	// <h1>Characters Go Here</h1>
-	// </div>
-
-	// <div className="QuestionsForm">
-	// <h1> QuestionsForm Goes Here</h1>
-	// </div>
-
-	// <div className="GuessForm">
-	// <h1> GuessForm Goes Here</h1>
-	// </div>
 
 /***/ },
 /* 160 */
@@ -19866,7 +19867,7 @@
 	      return React.createElement(
 	        "option",
 	        { value: index, key: index },
-	        bastard,
+	        villain,
 	        " "
 	      );
 	    });
@@ -19901,6 +19902,15 @@
 	  displayName: "CharactersBox",
 	
 	
+	  switchImage: function switchImage() {
+	    console.log("vader Clicked");
+	  },
+	
+	  changeImage: function changeImage(e) {
+	    console.log("clicked");
+	    e.target.src = "http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png";
+	  },
+	
 	  render: function render() {
 	    return React.createElement(
 	      "div",
@@ -19908,58 +19918,110 @@
 	      React.createElement(
 	        "h1",
 	        { id: "CharactersHeader" },
-	        "Villain"
+	        "Villains"
 	      ),
 	      React.createElement(
 	        "div",
 	        { id: "Vader" },
-	        React.createElement("img", { src: "http://www.sideshowtoy.com/photo.php?sku=1000763", width: "200px", length: "300px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "http://www.sideshowtoy.com/photo.php?sku=1000763",
+	          id: "Vader",
+	          width: "200px",
+	          length: "300px"
+	        })
 	      ),
 	      React.createElement(
 	        "div",
 	        { id: "Ming" },
-	        React.createElement("img", { src: "https://pbs.twimg.com/profile_images/3576260859/8031c96317a7ffb8cefa7d3578918e20.jpeg", width: "200px", length: "300px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "https://pbs.twimg.com/profile_images/3576260859/8031c96317a7ffb8cefa7d3578918e20.jpeg",
+	          width: "200px",
+	          length: "300px" })
 	      ),
 	      React.createElement(
 	        "div",
 	        { id: "Skeletor" },
-	        React.createElement("img", { src: "http://www.tshirtvortex.net/wp-content/uploads/2016/04/drinkingproblems.jpg", width: "200px", length: "300px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "http://www.tshirtvortex.net/wp-content/uploads/2016/04/drinkingproblems.jpg",
+	          width: "200px",
+	          length: "300px" })
 	      ),
 	      React.createElement(
 	        "div",
 	        { id: "Hitler" },
-	        React.createElement("img", { src: "http://f.tqn.com/y/history1900s/1/W/v/Q/1/Hitlerseated2.jpg", width: "200px", height: "200px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "http://f.tqn.com/y/history1900s/1/W/v/Q/1/Hitlerseated2.jpg",
+	          width: "200px",
+	          height: "200px" })
 	      ),
 	      React.createElement(
 	        "div",
 	        { id: "Stalin" },
-	        React.createElement("img", { src: "http://i.dailymail.co.uk/i/pix/2015/06/18/21/29C1CD9A00000578-3130307-image-m-5_1434660552551.jpg", width: "200px", height: "200px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "http://i.dailymail.co.uk/i/pix/2015/06/18/21/29C1CD9A00000578-3130307-image-m-5_1434660552551.jpg",
+	          width: "200px",
+	          height: "200px" })
 	      ),
 	      React.createElement("div", { id: "CharacterSeparator" }),
 	      React.createElement(
 	        "div",
 	        { id: "Trump" },
-	        React.createElement("img", { src: "https://pixel.nymag.com/imgs/daily/following/2016/01/27/27-trump-cowboy.w190.h190.2x.jpg", width: "200px", height: "200px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "https://pixel.nymag.com/imgs/daily/following/2016/01/27/27-trump-cowboy.w190.h190.2x.jpg",
+	          width: "200px",
+	          height: "200px" })
 	      ),
 	      React.createElement(
 	        "div",
 	        { id: "Joffrey" },
-	        React.createElement("img", { src: "http://vignette2.wikia.nocookie.net/game-of-thrones-le-trone-de-fer/images/8/89/Promo_(Joffrey)_Saison_4_(3).jpg/revision/latest/top-crop/width/240/height/240?cb=20160424205916&path-prefix=fr", width: "200px", height: "200px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "http://vignette2.wikia.nocookie.net/game-of-thrones-le-trone-de-fer/images/8/89/Promo_(Joffrey)_Saison_4_(3).jpg/revision/latest/top-crop/width/240/height/240?cb=20160424205916&path-prefix=fr",
+	          width: "200px",
+	          height: "200px" })
 	      ),
 	      React.createElement(
 	        "div",
 	        { id: "DrDoom" },
-	        React.createElement("img", { src: "http://static.comicvine.com/uploads/original/6/60680/1152344-dr._doom.jpg", width: "200px", height: "200px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "http://static.comicvine.com/uploads/original/6/60680/1152344-dr._doom.jpg",
+	          width: "200px",
+	          height: "200px" })
 	      ),
 	      React.createElement(
 	        "div",
 	        { id: "Beiber" },
-	        React.createElement("img", { src: "http://cdn4.thr.com/sites/default/files/2014/01/justin_bieber_mugshot.jpg", width: "200px", height: "200px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "http://cdn4.thr.com/sites/default/files/2014/01/justin_bieber_mugshot.jpg",
+	          width: "200px",
+	          height: "200px" })
 	      ),
 	      React.createElement(
 	        "div",
 	        { id: "MummRa" },
-	        React.createElement("img", { src: "http://65.media.tumblr.com/tumblr_m6vp4wwwHi1rawb5do1_500.jpg", width: "200px", height: "200px" })
+	        React.createElement("img", {
+	          onClick: this.changeImage,
+	          alt: "",
+	          src: "http://65.media.tumblr.com/tumblr_m6vp4wwwHi1rawb5do1_500.jpg",
+	          width: "200px",
+	          height: "200px" })
 	      )
 	    );
 	  }
@@ -20024,6 +20086,14 @@
 	  displayName: "NationalityForm",
 	
 	
+	  handleChange: function handleChange(e) {
+	    e.preventDefault();
+	    var newIndex = e.target.value;
+	    this.setState({ selectedIndex: newIndex });
+	    var selectedCountry = this.props.nations[newIndex];
+	    this.props.onSelectCountry(selectedCountry);
+	  },
+	
 	  render: function render() {
 	    var nation = this.props.nations.map(function (country, index) {
 	      return React.createElement(
@@ -20043,7 +20113,7 @@
 	        { id: "Nationality" },
 	        React.createElement(
 	          "select",
-	          { id: "Nationalities" },
+	          { id: "Nationalities", onChange: this.handleChange },
 	          nation
 	        )
 	      )

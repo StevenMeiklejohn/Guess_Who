@@ -5,17 +5,29 @@ var QuestionsForm = require('./QuestionsForm.jsx');
 var NationalityForm = require('./NationalityForm.jsx');
 var bastards = require('../sample_data.js');
 
+
 var GameBox = React.createClass({
   getInitialState: function() {
-    return {allBastards: bastards};
-    },
-
-
-  componentDidMount: function() {
-    // console.log(this.state.allBastards);
-      // this.selectRandomCharacter(); 
+    return { allBastards: bastards, gameVillain: null }
   },
+  removeImage: function(image){
 
+  },
+  componentDidMount: function() {
+  this.setRandomCharacter();
+  },
+  selectRandomCharacter: function(){
+    var villains = this.getVillains();
+    console.log(villains);
+    var rand = villains[Math.floor(Math.random() * villains.length)];
+    console.log(rand);
+    return rand;
+  },
+  setRandomCharacter: function(){
+    var gVillain = this.selectRandomCharacter();
+    console.log(gVillain);
+    this.setState( { gameVillain: gVillain })
+  },
   getNationalities: function(){
     var nationalities = []
     for (var item of this.state.allBastards){
@@ -24,7 +36,11 @@ var GameBox = React.createClass({
       console.log(nationalities)
       return nationalities;
   },
+  setSelectedNationality: function(selectedCountry){
+    console.log(selectedCountry);
+    console.log(this.state.gameVillain);
 
+  },
   getVillains: function(){
     var villains = []
     for (var item of this.state.allBastards){
@@ -33,6 +49,8 @@ var GameBox = React.createClass({
     console.log(villains)
     return villains;
   },
+
+
 
   
 
@@ -60,6 +78,7 @@ var GameBox = React.createClass({
         <NationalityForm 
         data={this.state.allBastards}
         nations={this.getNationalities()}
+        onSelectCountry = {this.setSelectedNationality}
         />
         </div>
 
@@ -75,22 +94,9 @@ var GameBox = React.createClass({
       </div>
     );
   }
-
 });
 
   module.exports = GameBox;
 
-
-  // <div className="CharactersBox">
-  // <h1>Characters Go Here</h1>
-  // </div>
-
-  // <div className="QuestionsForm">
-  // <h1> QuestionsForm Goes Here</h1>
-  // </div>
-
-  // <div className="GuessForm">
-  // <h1> GuessForm Goes Here</h1>
-  // </div>
   
 
