@@ -19790,6 +19790,165 @@
 	    console.log(villains);
 	    return villains;
 	  },
+	  handleQuestion: function handleQuestion(e) {
+	    var options = this.state.allBastards;
+	    console.log(options);
+	    e.preventDefault();
+	    console.log(e.target.value);
+	
+	    var forDeselection = [];
+	    var selection = e.target.value;
+	
+	    var _iteratorNormalCompletion3 = true;
+	    var _didIteratorError3 = false;
+	    var _iteratorError3 = undefined;
+	
+	    try {
+	      for (var _iterator3 = options[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+	        var item = _step3.value;
+	
+	        if (selection === "0") {
+	          if (item.Moustache === "No") {
+	            forDeselection.push(item.Name);
+	          }
+	        }
+	        if (selection === "1") {
+	          if (item.Mask === "No") {
+	            forDeselection.push(item.Name);
+	          }
+	        }
+	        if (selection === "2") {
+	          if (item.Hair === "No") {
+	            forDeselection.push(item.Name);
+	          }
+	        }
+	      }
+	    } catch (err) {
+	      _didIteratorError3 = true;
+	      _iteratorError3 = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+	          _iterator3.return();
+	        }
+	      } finally {
+	        if (_didIteratorError3) {
+	          throw _iteratorError3;
+	        }
+	      }
+	    }
+	
+	    console.log(forDeselection);
+	    // var forDeselection = ["Skeletor", "Hitler", "Stalin"]
+	    this.changeImageEnMass(forDeselection);
+	    // return forDeselection;
+	  },
+	
+	  handleCountry: function handleCountry(e) {
+	    var options = this.state.allBastards;
+	    console.log(options);
+	    e.preventDefault();
+	    console.log(e.target.value);
+	    var names = [];
+	    var _iteratorNormalCompletion4 = true;
+	    var _didIteratorError4 = false;
+	    var _iteratorError4 = undefined;
+	
+	    try {
+	      for (var _iterator4 = options[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+	        var item = _step4.value;
+	
+	        names.push(item.Name);
+	      }
+	    } catch (err) {
+	      _didIteratorError4 = true;
+	      _iteratorError4 = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion4 && _iterator4.return) {
+	          _iterator4.return();
+	        }
+	      } finally {
+	        if (_didIteratorError4) {
+	          throw _iteratorError4;
+	        }
+	      }
+	    }
+	
+	    var index = e.target.value;
+	    names.splice(index, 1);
+	
+	    console.log(options);
+	    this.changeImageEnMass(names);
+	  },
+	
+	  switchImage: function switchImage() {
+	    console.log("vader Clicked");
+	  },
+	
+	  changeImage: function changeImage(e) {
+	    console.log("clicked");
+	    e.target.src = "http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png";
+	  },
+	
+	  changeImageEnMass: function changeImageEnMass(array) {
+	    var all = this.state.allBastards;
+	    console.log(all);
+	    // array = ["Skeletor", "Hitler", "Stalin"]
+	    var _iteratorNormalCompletion5 = true;
+	    var _didIteratorError5 = false;
+	    var _iteratorError5 = undefined;
+	
+	    try {
+	      for (var _iterator5 = array[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+	        var item = _step5.value;
+	        var _iteratorNormalCompletion6 = true;
+	        var _didIteratorError6 = false;
+	        var _iteratorError6 = undefined;
+	
+	        try {
+	          for (var _iterator6 = all[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+	            var character = _step6.value;
+	
+	            if (item === character.Name) {
+	              character.src = "http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png";
+	            }
+	          }
+	        } catch (err) {
+	          _didIteratorError6 = true;
+	          _iteratorError6 = err;
+	        } finally {
+	          try {
+	            if (!_iteratorNormalCompletion6 && _iterator6.return) {
+	              _iterator6.return();
+	            }
+	          } finally {
+	            if (_didIteratorError6) {
+	              throw _iteratorError6;
+	            }
+	          }
+	        }
+	      }
+	    } catch (err) {
+	      _didIteratorError5 = true;
+	      _iteratorError5 = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion5 && _iterator5.return) {
+	          _iterator5.return();
+	        }
+	      } finally {
+	        if (_didIteratorError5) {
+	          throw _iteratorError5;
+	        }
+	      }
+	    }
+	
+	    console.log(all);
+	    this.setState({ allBastards: all });
+	    return all;
+	    this.render();
+	  },
 	
 	  render: function render() {
 	    return React.createElement(
@@ -19803,7 +19962,12 @@
 	      React.createElement(
 	        'div',
 	        { className: 'CharactersBox' },
-	        React.createElement(CharactersBox, { data: this.state.allBastards })
+	        React.createElement(CharactersBox, {
+	          data: this.state.allBastards,
+	          switchImage: this.switchImage,
+	          changeImage: this.changeImage,
+	          changeImageEnMass: this.changeImageEnMass
+	        })
 	      ),
 	      React.createElement(
 	        'div',
@@ -19811,10 +19975,11 @@
 	        React.createElement(
 	          'h1',
 	          { id: 'DoesVillainHave' },
-	          'Does The Villain Have?'
+	          'Does Villain Have?'
 	        ),
 	        React.createElement(QuestionsForm, {
-	          data: this.state.allBastards
+	          data: this.state.allBastards,
+	          handleQuestion: this.handleQuestion
 	        })
 	      ),
 	      React.createElement(
@@ -19828,7 +19993,8 @@
 	        React.createElement(NationalityForm, {
 	          data: this.state.allBastards,
 	          nations: this.getNationalities(),
-	          onSelectCountry: this.setSelectedNationality
+	          onSelectCountry: this.setSelectedNationality,
+	          handleCountry: this.handleCountry
 	        })
 	      ),
 	      React.createElement(
@@ -19894,134 +20060,126 @@
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	var React = __webpack_require__(1);
+	var QuestionsForm = __webpack_require__(162);
 	
 	var CharactersBox = React.createClass({
-	  displayName: "CharactersBox",
+	  displayName: 'CharactersBox',
 	
-	
-	  switchImage: function switchImage() {
-	    console.log("vader Clicked");
-	  },
-	
-	  changeImage: function changeImage(e) {
-	    console.log("clicked");
-	    e.target.src = "http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png";
-	  },
 	
 	  render: function render() {
 	    return React.createElement(
-	      "div",
-	      { className: "CharactersBox" },
+	      'div',
+	      { className: 'CharactersBox' },
 	      React.createElement(
-	        "h1",
-	        { id: "CharactersHeader" },
-	        "Villains"
+	        'h1',
+	        { id: 'CharactersHeader' },
+	        'Villains'
 	      ),
 	      React.createElement(
-	        "div",
-	        { id: "Vader" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "http://www.sideshowtoy.com/photo.php?sku=1000763",
-	          id: "Vader",
-	          width: "200px",
-	          length: "300px"
+	        'div',
+	        { id: 'Vader' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[0].src,
+	          id: 'Vader',
+	          width: '200px',
+	          length: '300px'
 	        })
 	      ),
 	      React.createElement(
-	        "div",
-	        { id: "Ming" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "https://pbs.twimg.com/profile_images/3576260859/8031c96317a7ffb8cefa7d3578918e20.jpeg",
-	          width: "200px",
-	          length: "300px" })
+	        'div',
+	        { id: 'Ming' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[1].src,
+	          width: '200px',
+	          length: '300px' })
 	      ),
 	      React.createElement(
-	        "div",
-	        { id: "Skeletor" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "http://www.tshirtvortex.net/wp-content/uploads/2016/04/drinkingproblems.jpg",
-	          width: "200px",
-	          length: "300px" })
+	        'div',
+	        { id: 'Skeletor' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[2].src,
+	          width: '200px',
+	          length: '300px' })
 	      ),
 	      React.createElement(
-	        "div",
-	        { id: "Hitler" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "http://f.tqn.com/y/history1900s/1/W/v/Q/1/Hitlerseated2.jpg",
-	          width: "200px",
-	          height: "200px" })
+	        'div',
+	        { id: 'Hitler' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[3].src,
+	          width: '200px',
+	          height: '200px' })
 	      ),
 	      React.createElement(
-	        "div",
-	        { id: "Stalin" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "http://i.dailymail.co.uk/i/pix/2015/06/18/21/29C1CD9A00000578-3130307-image-m-5_1434660552551.jpg",
-	          width: "200px",
-	          height: "200px" })
+	        'div',
+	        { id: 'Stalin' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[4].src,
+	          width: '200px',
+	          height: '200px' })
 	      ),
-	      React.createElement("div", { id: "CharacterSeparator" }),
+	      React.createElement('div', { id: 'CharacterSeparator' }),
 	      React.createElement(
-	        "div",
-	        { id: "Trump" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "https://pixel.nymag.com/imgs/daily/following/2016/01/27/27-trump-cowboy.w190.h190.2x.jpg",
-	          width: "200px",
-	          height: "200px" })
-	      ),
-	      React.createElement(
-	        "div",
-	        { id: "Joffrey" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "http://vignette2.wikia.nocookie.net/game-of-thrones-le-trone-de-fer/images/8/89/Promo_(Joffrey)_Saison_4_(3).jpg/revision/latest/top-crop/width/240/height/240?cb=20160424205916&path-prefix=fr",
-	          width: "200px",
-	          height: "200px" })
+	        'div',
+	        { id: 'Trump' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[5].src,
+	          width: '200px',
+	          height: '200px' })
 	      ),
 	      React.createElement(
-	        "div",
-	        { id: "DrDoom" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "http://static.comicvine.com/uploads/original/6/60680/1152344-dr._doom.jpg",
-	          width: "200px",
-	          height: "200px" })
+	        'div',
+	        { id: 'Joffrey' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[6].src,
+	          width: '200px',
+	          height: '200px' })
 	      ),
 	      React.createElement(
-	        "div",
-	        { id: "Beiber" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "http://cdn4.thr.com/sites/default/files/2014/01/justin_bieber_mugshot.jpg",
-	          width: "200px",
-	          height: "200px" })
+	        'div',
+	        { id: 'DrDoom' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[7].src,
+	          width: '200px',
+	          height: '200px' })
 	      ),
 	      React.createElement(
-	        "div",
-	        { id: "MummRa" },
-	        React.createElement("img", {
-	          onClick: this.changeImage,
-	          alt: "",
-	          src: "http://65.media.tumblr.com/tumblr_m6vp4wwwHi1rawb5do1_500.jpg",
-	          width: "200px",
-	          height: "200px" })
+	        'div',
+	        { id: 'Beiber' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[8].src,
+	          width: '200px',
+	          height: '200px' })
+	      ),
+	      React.createElement(
+	        'div',
+	        { id: 'MummRa' },
+	        React.createElement('img', {
+	          onClick: this.props.changeImage,
+	          alt: '',
+	          src: this.props.data[9].src,
+	          width: '200px',
+	          height: '200px' })
 	      )
 	    );
 	  }
@@ -20033,84 +20191,36 @@
 /* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	var React = __webpack_require__(1);
+	var CharactersBox = __webpack_require__(161);
 	
 	var QuestionsForm = React.createClass({
-	  displayName: "QuestionsForm",
+	  displayName: 'QuestionsForm',
 	
-	
-	  handleQuestion: function handleQuestion(e) {
-	    e.preventDefault();
-	    console.log(e.target.value);
-	    var forDeslection = [];
-	    var selection = e.target.value;
-	
-	    var _iteratorNormalCompletion = true;
-	    var _didIteratorError = false;
-	    var _iteratorError = undefined;
-	
-	    try {
-	      for (var _iterator = this.props.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	        var item = _step.value;
-	
-	        if (selection === "0") {
-	          if (item.Moustache === "No") {
-	            forDeslection.push(item.Name);
-	          }
-	        }
-	        if (selection === "1") {
-	          if (item.Mask === "No") {
-	            forDeslection.push(item.Name);
-	          }
-	        }
-	        if (selection === "2") {
-	          if (item.Hair === "No") {
-	            forDeslection.push(item.Name);
-	          }
-	        }
-	      }
-	    } catch (err) {
-	      _didIteratorError = true;
-	      _iteratorError = err;
-	    } finally {
-	      try {
-	        if (!_iteratorNormalCompletion && _iterator.return) {
-	          _iterator.return();
-	        }
-	      } finally {
-	        if (_didIteratorError) {
-	          throw _iteratorError;
-	        }
-	      }
-	    }
-	
-	    console.log(forDeslection);
-	    return forDeslection;
-	  },
 	
 	  render: function render() {
 	    var array = ["Moustache", "Mask", "Hair"];
 	    var options = array.map(function (characteristic, index) {
 	      return React.createElement(
-	        "option",
+	        'option',
 	        { value: index, key: index },
-	        " ",
+	        ' ',
 	        characteristic,
-	        " "
+	        ' '
 	      );
 	    });
 	    return React.createElement(
-	      "div",
-	      { className: "QuestionsForm" },
+	      'div',
+	      { className: 'QuestionsForm' },
 	      React.createElement(
-	        "div",
-	        { id: "VillainForm1" },
+	        'div',
+	        { id: 'VillainForm1' },
 	        React.createElement(
-	          "select",
-	          { id: "DoesVillainHave",
-	            onChange: this.handleQuestion },
+	          'select',
+	          { id: 'DoesVillainHave',
+	            onChange: this.props.handleQuestion },
 	          options
 	        )
 	      )
@@ -20132,14 +20242,6 @@
 	  displayName: "NationalityForm",
 	
 	
-	  // handleChange: function(e){
-	  //   e.preventDefault();
-	  //   var newIndex = e.target.value;
-	  //   this.setState({selectedIndex: newIndex});
-	  //   var selectedCountry = this.props.nations[newIndex];
-	  //   this.props.onSelectCountry( selectedCountry );
-	  // },
-	
 	  render: function render() {
 	    var nation = this.props.nations.map(function (country, index) {
 	      return React.createElement(
@@ -20159,7 +20261,7 @@
 	        { id: "Nationality" },
 	        React.createElement(
 	          "select",
-	          { id: "Nationalities", onChange: this.handleChange },
+	          { id: "Nationalities", onChange: this.props.handleCountry },
 	          nation
 	        )
 	      )
@@ -20180,61 +20282,71 @@
 	  Moustache: "No",
 	  Mask: "Yes",
 	  Hair: "No",
-	  Nationality: "Tatooinian"
+	  Nationality: "Tatooinian",
+	  src: "http://www.sideshowtoy.com/photo.php?sku=1000763"
 	}, { Name: "Ming The Merciless",
 	  Politician: "Yes",
 	  Moustache: "Yes",
 	  Mask: "No",
 	  Hair: "Yes",
-	  Nationality: "Mongolian"
+	  Nationality: "Mongolian",
+	  src: "https://pbs.twimg.com/profile_images/3576260859/8031c96317a7ffb8cefa7d3578918e20.jpeg"
 	}, { Name: "Skeletor",
 	  Politician: "No",
 	  Moustache: "No",
 	  Mask: "No",
 	  Hair: "No",
-	  Nationality: "Eternian"
+	  Nationality: "Eternian",
+	  src: "http://www.tshirtvortex.net/wp-content/uploads/2016/04/drinkingproblems.jpg"
 	}, { Name: "Hitler",
 	  Politician: "Yes",
 	  Moustache: "Yes",
 	  Mask: "No",
 	  Hair: "Yes",
-	  Nationality: "German"
+	  Nationality: "German",
+	  src: "http://f.tqn.com/y/history1900s/1/W/v/Q/1/Hitlerseated2.jpg"
 	}, { Name: "Stalin",
 	  Politician: "Yes",
 	  Moustache: "Yes",
 	  Mask: "No",
 	  Hair: "Yes",
-	  Nationality: "Russian"
+	  Nationality: "Russian",
+	  src: "http://i.dailymail.co.uk/i/pix/2015/06/18/21/29C1CD9A00000578-3130307-image-m-5_1434660552551.jpg"
 	}, { Name: "Trump",
 	  Politician: "Yes",
 	  Moustache: "No",
 	  Mask: "No",
 	  Hair: "Yes",
-	  Nationality: "American"
+	  Nationality: "American",
+	  src: "https://pixel.nymag.com/imgs/daily/following/2016/01/27/27-trump-cowboy.w190.h190.2x.jpg"
 	}, { Name: "Joffrey",
 	  Politician: "Yes",
 	  Moustache: "No",
 	  Mask: "No",
 	  Hair: "Yes",
-	  Nationality: "Westerosi"
+	  Nationality: "Westerosi",
+	  src: "http://vignette2.wikia.nocookie.net/game-of-thrones-le-trone-de-fer/images/8/89/Promo_(Joffrey)_Saison_4_(3).jpg/revision/latest/top-crop/width/240/height/240?cb=20160424205916&path-prefix=fr"
 	}, { Name: "Dr Doom",
 	  Politician: "Yes",
 	  Moustache: "No",
 	  Mask: "Yes",
 	  Hair: "No",
-	  Nationality: "Latverian"
+	  Nationality: "Latverian",
+	  src: "http://static.comicvine.com/uploads/original/6/60680/1152344-dr._doom.jpg"
 	}, { Name: "Justin Bieber",
 	  Politician: "No",
 	  Moustache: "No",
 	  Mask: "No",
 	  Hair: "Yes",
-	  Nationality: "Canada"
+	  Nationality: "Canada",
+	  src: "http://cdn4.thr.com/sites/default/files/2014/01/justin_bieber_mugshot.jpg"
 	}, { Name: "Mumm-Ra",
 	  Politician: "No",
 	  Moustache: "No",
 	  Mask: "No",
 	  Hair: "No",
-	  Nationality: "Thunderian"
+	  Nationality: "Thunderian",
+	  src: "http://65.media.tumblr.com/tumblr_m6vp4wwwHi1rawb5do1_500.jpg"
 	}];
 
 /***/ }

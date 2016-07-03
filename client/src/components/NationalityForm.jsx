@@ -4,13 +4,6 @@ var React = require('react');
 
 var NationalityForm = React.createClass({
 
-  // handleChange: function(e){
-  //   e.preventDefault();
-  //   var newIndex = e.target.value;
-  //   this.setState({selectedIndex: newIndex});
-  //   var selectedCountry = this.props.nations[newIndex];
-  //   this.props.onSelectCountry( selectedCountry );
-  // },
 
 
   render: function() {
@@ -21,7 +14,7 @@ var NationalityForm = React.createClass({
     return (
       <div className="NationalityForm">
         <div id="Nationality">
-          <select id="Nationalities" onChange={this.handleChange}>
+          <select id="Nationalities" onChange={this.props.handleCountry}>
           {nation}
           </select>
         </div>
