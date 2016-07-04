@@ -15,6 +15,7 @@ var NationalityForm = React.createClass({
       <div className="NationalityForm">
         <div id="Nationality">
           <select id="Nationalities" onChange={this.props.handleCountry}>
+          <option id="" selected>Select</option>
           {nation}
           </select>
         </div>

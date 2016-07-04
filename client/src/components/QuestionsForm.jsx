@@ -23,6 +23,7 @@ render: function() {
       <div id="VillainForm1">
         <select id="DoesVillainHave" 
         onChange={this.props.handleQuestion}>
+        <option value="" selected> Select </option>
         {options}
         </select>
       </div>

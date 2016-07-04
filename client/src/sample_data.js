@@ -61,7 +61,7 @@ module.exports = [
     Mask: "Yes",
     Hair: "No",
     Nationality: "Latverian",
-    src: "http://static.comicvine.com/uploads/original/6/60680/1152344-dr._doom.jpg",
+    src: "http://images-cdn.moviepilot.com/images/c_scale,h_1200,w_1600/t_mp_quality/n3bhgbdah6afarpbehs7/could-anyone-actually-defeat-dr-doom-494013.jpg",
   },
   { Name: "Justin Bieber",
     Politician: "No",

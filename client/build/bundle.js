@@ -19984,7 +19984,7 @@
 	      React.createElement(
 	        'h1',
 	        { id: 'title' },
-	        'Guess The Villain'
+	        'Guess The Bastard'
 	      ),
 	      React.createElement(
 	        'div',
@@ -20002,7 +20002,7 @@
 	        React.createElement(
 	          'h1',
 	          { id: 'DoesVillainHave' },
-	          'Does Villain Have?'
+	          'Does Bastard Have?'
 	        ),
 	        React.createElement(QuestionsForm, {
 	          data: this.state.allBastards,
@@ -20015,7 +20015,7 @@
 	        React.createElement(
 	          'h1',
 	          { id: 'Nationality' },
-	          'Villain Nationality'
+	          'Bastard Nationality'
 	        ),
 	        React.createElement(NationalityForm, {
 	          data: this.state.allBastards,
@@ -20030,7 +20030,7 @@
 	        React.createElement(
 	          'h1',
 	          { id: 'VillainGuess' },
-	          'Guess The Villain'
+	          'Guess The Bastard'
 	        ),
 	        React.createElement(GuessForm, {
 	          data: this.state.allBastards,
@@ -20076,6 +20076,11 @@
 	          "select",
 	          { id: "GuessVillain",
 	            onChange: this.props.handleVillain },
+	          React.createElement(
+	            "option",
+	            { id: "", selected: true },
+	            "Select"
+	          ),
 	          bastard
 	        )
 	      )
@@ -20105,7 +20110,7 @@
 	      React.createElement(
 	        'h1',
 	        { id: 'CharactersHeader' },
-	        'Villains'
+	        'Bastards'
 	      ),
 	      React.createElement(
 	        'div',
@@ -20250,6 +20255,11 @@
 	          'select',
 	          { id: 'DoesVillainHave',
 	            onChange: this.props.handleQuestion },
+	          React.createElement(
+	            'option',
+	            { value: '', selected: true },
+	            ' Select '
+	          ),
 	          options
 	        )
 	      )
@@ -20291,6 +20301,11 @@
 	        React.createElement(
 	          "select",
 	          { id: "Nationalities", onChange: this.props.handleCountry },
+	          React.createElement(
+	            "option",
+	            { id: "", selected: true },
+	            "Select"
+	          ),
 	          nation
 	        )
 	      )
@@ -20361,7 +20376,7 @@
 	  Mask: "Yes",
 	  Hair: "No",
 	  Nationality: "Latverian",
-	  src: "http://static.comicvine.com/uploads/original/6/60680/1152344-dr._doom.jpg"
+	  src: "http://images-cdn.moviepilot.com/images/c_scale,h_1200,w_1600/t_mp_quality/n3bhgbdah6afarpbehs7/could-anyone-actually-defeat-dr-doom-494013.jpg"
 	}, { Name: "Justin Bieber",
 	  Politician: "No",
 	  Moustache: "No",

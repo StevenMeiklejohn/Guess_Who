@@ -162,7 +162,7 @@ var GameBox = React.createClass({
   render: function() {
     return (
       <div className="GameBox">
-        <h1 id="title">Guess The Villain</h1>
+        <h1 id="title">Guess The Bastard</h1>
 
         <div className="CharactersBox">
         <CharactersBox 
@@ -174,7 +174,7 @@ var GameBox = React.createClass({
         </div>
 
         <div className="QuestionsForm">
-        <h1 id="DoesVillainHave">Does Villain Have?</h1>
+        <h1 id="DoesVillainHave">Does Bastard Have?</h1>
         <QuestionsForm 
         data={this.state.allBastards}
         handleQuestion={this.handleQuestion}
@@ -182,7 +182,7 @@ var GameBox = React.createClass({
         </div>
 
         <div className="NationalityForm">
-        <h1 id="Nationality">Villain Nationality</h1>
+        <h1 id="Nationality">Bastard Nationality</h1>
         <NationalityForm 
         data={this.state.allBastards}
         nations={this.getNationalities()}
@@ -193,7 +193,7 @@ var GameBox = React.createClass({
 
 
         <div className="GuessForm">
-        <h1 id="VillainGuess">Guess The Villain</h1>
+        <h1 id="VillainGuess">Guess The Bastard</h1>
         <GuessForm 
         data={this.state.allBastards}
         villains={this.getVillains()}
